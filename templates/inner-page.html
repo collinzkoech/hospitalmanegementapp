@@ -8,6 +8,7 @@
   <title>Inner Page - Medicio Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+    {% load static %}
 
   <!-- Favicons -->
   <link href="{% static 'assets/img/favicon.png'%}' %}" rel="icon">
@@ -111,15 +112,12 @@
       </div>
     </section><!-- End Breadcrumbs Section -->
 
-    <section class="inner-page">
-      <div class="container">
-        <p>
-          Example inner page template
-        </p>
-      </div>
-    </section>
-
-  </main><!-- End #main -->
+ {% block body %}
+     
+     
+      
+      {% endblock %}
+   
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
