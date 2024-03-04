@@ -12,7 +12,7 @@
 <body>
  {% block body %}
      <h1>Welcome {{ member.username }}.You'are logged in as an admin</h1>
-      
+     <a href="{% url 'upload' %}" class="btn btn-outline-warning">Upload</a>
       {% endblock %}
    
 

@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect
-from hospitallapp.models import Member,Message,users
+from hospitallapp.models import Member,Message,users,ImageModel
+from hospitallapp.forms import  ImageUploadForm
 # Create your views here.
 def index(request):
     if request.method == 'POST':
@@ -23,8 +24,7 @@ def register(request):
         return render(request, 'register.html')
 def login(request):
     return render(request, 'login.html')
-def upload(request):
-    return render(request, 'upload.html')
+
 
 def detail(request):
     details = Message.objects.all()
@@ -46,3 +46,21 @@ def adminhome(request):
         return render(request, 'login.html')
 
 
+def upload_image(request):
+    if request.method == 'POST':
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('/showimage')
+    else:
+        form = ImageUploadForm()
+    return render(request, 'upload.html', {'form': form})
+
+def show_image(request):
+    images = ImageModel.objects.all()
+    return render(request, 'showimages.html', {'images': images})
+
+def imagedelete(request, id):
+    image = ImageModel.objects.get(id=id)
+    image.delete()
+    return redirect('/showimage')
